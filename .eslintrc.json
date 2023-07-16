@@ -1,0 +1,32 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "cypress/globals": true
+  },
+  "root": true,
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "standard-with-typescript",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}"],
+      "extends": ["plugin:cypress/recommended"]
+    }
+  ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "extraFileExtensions": [".ts", ".vue"]
+  },
+  "plugins": ["vue", "@typescript-eslint"],
+  "rules": {
+    "indent": "error"
+  }
+}

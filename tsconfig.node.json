@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"]
+  },
+  "include": [
+    "configs/**/*.ts",
+    "scripts/**/*.ts",
+    "vitest.config.ts",
+    "cypress.config.ts",
+    ".cz-config.cjs",
+    "commitlint.config.cjs"
+  ]
+}
