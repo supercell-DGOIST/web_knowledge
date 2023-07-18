@@ -13,22 +13,11 @@ import {
   errorTag,
   deepTags,
   getType,
-  isObjOrFn
+  isObjOrFn,
+  forEach
 } from './tools'
 
 const getInit = (target: any): any => new target.constructor()
-
-const forEach = (
-  target: any[],
-  callback: (value: any, key: number, target?: any[]) => void
-): void => {
-  let index = 0
-  const length: number = target.length
-  while (index < length) {
-    callback(target[index], index, target)
-    index++
-  }
-}
 
 const cloneSymbol = (target: symbol): object => {
   return Object(Symbol.prototype.valueOf.call(target))

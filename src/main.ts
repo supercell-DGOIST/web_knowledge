@@ -1,6 +1,5 @@
 import 'element-plus/theme-chalk/dark/css-vars.css'
-import './styles/dark-vars.less'
-import './style.less'
+import './style.css'
 import { createApp } from 'vue'
 import pinia from './stores'
 import router from './router'

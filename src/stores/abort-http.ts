@@ -1,14 +1,5 @@
 import { defineStore } from 'pinia'
 
-interface controllerItem {
-  controller: AbortController
-  signal: AbortSignal
-}
-
-interface states {
-  controllers: controllerItem[]
-}
-
 const store = defineStore('abortControllers', {
   state: (): states => ({
     controllers: []

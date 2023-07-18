@@ -52,7 +52,7 @@ const handleError = ({ status, data }: AxiosResponse): void => {
     case 504:
       break
     default:
-      ElMessage.error(`${isObject(data) ? data.message : ''}`)
+      ElMessage.error(`${isObject(data) ? data.message ?? '' : ''}`)
       break
   }
 }
@@ -73,14 +73,14 @@ axios.interceptors.request.use(
     })
     return config
   },
-  async (error: AxiosError<any>) => {
+  async (error: AxiosError) => {
     return await Promise.reject(error)
   }
 )
 
 // 后置拦截器（获取到响应时的拦截）
 axios.interceptors.response.use(
-  async (response: AxiosResponse<any>) => {
+  async (response: AxiosResponse) => {
     /**
      * 根据你的项目实际情况来对 response 和 error 做处理
      * 这里对 response 和 error 不做任何处理，直接返回
@@ -91,7 +91,7 @@ axios.interceptors.response.use(
       return await Promise.reject(response)
     }
   },
-  async (error: AxiosError<any>) => {
+  async (error: AxiosError) => {
     if (isObject(error.response) && error.response?.status !== undefined) {
       handleError(error.response)
     } else {
@@ -101,14 +101,12 @@ axios.interceptors.response.use(
   }
 )
 
-const apiMap: string[] = ['get', 'post', 'put', 'delete']
 const headers: RawAxiosRequestHeaders = {
   'content-type': 'application/json'
 }
 
-const setApi =
-  (method: string) =>
-  (url: string, data: any, customConfig: AxiosRequestConfig | undefined = {}) => {
+const setApi = (method: string) => {
+  return (url: string, data: any, customConfig: AxiosRequestConfig | undefined = {}) => {
     if (customConfig?.headers != null) {
       const contentType: any = customConfig.headers['content-type']
       if (contentType === undefined) {
@@ -123,15 +121,13 @@ const setApi =
     }
     return axios[method](url, { ...customConfig, params: data ?? {} })
   }
-
-const createApiIstance = (apiMap: string[]): ApiInstance => {
-  const apiInstance: ApiInstance | any = {}
-
-  apiMap.forEach((key: string) => {
-    apiInstance[key] = setApi(key)
-  })
-
-  return apiInstance
 }
 
-export default createApiIstance(apiMap)
+const apiInstance: ApiInstance = {
+  get: setApi('get'),
+  post: setApi('post'),
+  put: setApi('put'),
+  delete: setApi('delete')
+}
+
+export default apiInstance

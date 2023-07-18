@@ -1,12 +1,14 @@
 import { type UserConfig } from 'vite'
 import autoprefixer from 'autoprefixer'
+import tailwindcss from 'tailwindcss'
+import cssnano from 'cssnano'
 import gzipPlugin from 'rollup-plugin-gzip'
 
 export default (): UserConfig => {
   return {
     css: {
       postcss: {
-        plugins: [autoprefixer]
+        plugins: [autoprefixer, tailwindcss, cssnano({ preset: 'default' })]
       }
     },
     build: {

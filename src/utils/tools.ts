@@ -20,3 +20,15 @@ export const isObjOrFn = (target: any): boolean => {
 }
 
 export const isObject = (target: any): boolean => getType(target) === objectTag
+
+export const forEach = (
+  target: any[],
+  callback: (value: any, key: number, target?: any[]) => void
+): void => {
+  let index = 0
+  const length: number = target.length
+  while (index < length) {
+    callback(target[index], index, target)
+    index++
+  }
+}

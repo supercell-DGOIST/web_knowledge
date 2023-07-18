@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
       keepAlive: true,
       requireAuth: false
     },
-    component: async () => await import('@/views/Home.vue')
+    component: async () => await import('@/views/HomePage/HomePage.vue')
   }
 ]
 

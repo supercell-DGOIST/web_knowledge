@@ -11,8 +11,8 @@ export default (mode: string): UserConfig => {
     envDir: toPath('env'),
     resolve: {
       alias: {
-        '~/': toPath('./'),
-        '@/': toPath('src/')
+        '~': toPath('.'),
+        '@': toPath('src')
       }
     },
     json: {
@@ -22,12 +22,11 @@ export default (mode: string): UserConfig => {
     plugins: [
       vue(),
       AutoImport({
-        imports: ['vue'],
+        imports: ['vue', '@vueuse/core'],
         resolvers: [ElementPlusResolver()],
         dts: toPath('types/auto-imports.d.ts')
       }),
       Components({
-        dirs: ['src/components'],
         resolvers: [ElementPlusResolver()],
         dts: toPath('types/components.d.ts')
       })

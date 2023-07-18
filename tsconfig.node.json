@@ -4,7 +4,8 @@
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "types": ["node"]
+    "types": ["node"],
+    "strictNullChecks": true
   },
   "include": [
     "configs/**/*.ts",
@@ -12,6 +13,7 @@
     "vitest.config.ts",
     "cypress.config.ts",
     ".cz-config.cjs",
-    "commitlint.config.cjs"
+    "commitlint.config.cjs",
+    "tailwind.config.js"
   ]
 }
