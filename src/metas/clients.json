@@ -1,0 +1,50 @@
+[
+  {
+    "name": "浏览器",
+    "type": "Platforms",
+    "key": "Browser",
+    "icon": "icon browser-icon"
+  },
+  {
+    "name": "Html",
+    "type": "Webs",
+    "key": "Html",
+    "icon": "icon html-icon"
+  },
+  {
+    "name": "Css",
+    "type": "Webs",
+    "key": "Css",
+    "icon": "icon css-icon"
+  },
+  {
+    "name": "JavaScript",
+    "type": "Webs",
+    "key": "JavaScript",
+    "icon": "icon javascript-icon"
+  },
+  {
+    "name": "TypeScript",
+    "type": "Webs",
+    "key": "TypeScript",
+    "icon": "icon typescript-icon"
+  },
+  {
+    "name": "NodeJs",
+    "type": "Backends",
+    "key": "NodeJs",
+    "icon": "icon nodejs-icon"
+  },
+  {
+    "name": "Vue",
+    "type": "Frameworks",
+    "key": "Vue",
+    "icon": "icon vue-icon"
+  },
+  {
+    "name": "React",
+    "type": "Frameworks",
+    "key": "React",
+    "icon": "icon react-icon"
+  }
+]

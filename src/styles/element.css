@@ -1,0 +1,84 @@
+:root {
+  --light-bg-color: #ffffff;
+  --light-color-primary: #42d392;
+  --light-text-color-primary: #181818;
+  --light-border-color-hover: #42d392;
+
+  --dark-bg-color: #181818;
+  --dark-color-primary: #181818;
+  --dark-text-color-primary: #ffffff;
+  --dark-border-color-hover: #42d392;
+  --dark-switch-on-color: #2f2f2f;
+}
+
+html.light {
+  --el-bg-color: var(--light-bg-color);
+  --el-color-primary: var(--light-color-primary);
+  --el-text-color-primary: var(--light-text-color-primary);
+  --el-border-color-hover: var(--light-border-color-hover);
+
+  --vt-c-text-3: var(--vt-c-text-light-3);
+}
+
+html.dark {
+  color-scheme: dark;
+  --el-bg-color: var(--dark-bg-color);
+  --el-color-primary: var(--dark-color-primary);
+  --el-text-color-primary: var(--dark-text-color-primary);
+  --el-border-color-hover: var(--dark-border-color-hover);
+
+  --vt-c-text-3: var(--vt-c-text-dark-3);
+}
+
+.dark .el-card.is-hover-shadow:focus,
+.dark .el-card.is-hover-shadow:hover {
+  border-color: var(--el-border-color-hover);
+}
+
+.dark .el-link:hover {
+  color: var(--el-border-color-hover);
+}
+
+.el-input--large .el-input__inner {
+  --el-input-height: 50px;
+}
+
+.icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.browser-icon {
+  background: url('@/assets/browser.svg') center/100% 100%;
+}
+
+.html-icon {
+  background: url('@/assets/html.svg') center/100% 100%;
+}
+
+.css-icon {
+  background: url('@/assets/css.svg') center/100% 100%;
+}
+
+.javascript-icon {
+  background: url('@/assets/javascript.svg') center/100% 100%;
+}
+
+.typescript-icon {
+  background: url('@/assets/typescript.svg') center/100% 100%;
+}
+
+.nodejs-icon {
+  background: url('@/assets/nodejs.svg') center/100% 100%;
+}
+
+.vue-icon {
+  background: url('@/assets/vue.svg') center/100% 100%;
+}
+
+.react-icon {
+  background: url('@/assets/react.svg') center/100% 100%;
+}

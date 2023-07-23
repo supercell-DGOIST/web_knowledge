@@ -3,6 +3,7 @@ import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
 import cssnano from 'cssnano'
 import gzipPlugin from 'rollup-plugin-gzip'
+import Inspect from 'vite-plugin-inspect'
 
 export default (): UserConfig => {
   return {
@@ -30,6 +31,13 @@ export default (): UserConfig => {
         external: []
       }
     },
-    plugins: [gzipPlugin()]
+
+    plugins: [
+      gzipPlugin(),
+      Inspect({
+        build: true,
+        outputDir: '.vite-inspect'
+      })
+    ]
   }
 }
