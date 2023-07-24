@@ -30,11 +30,11 @@
 
 <script setup lang="ts">
   import HomeSearch from './HomeSearch.vue'
-  import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
   import { useDebounceFn } from '@vueuse/core'
   import { clients } from '@/metas'
-  import { getClientTypes, getClientList } from './util'
+  import { getClientTypes } from '@/utils/common'
+  import { getClientList } from './util'
 
   const copyClients = clients.slice()
   const clientOptions = reactive({
@@ -68,9 +68,9 @@
   }
 
   const onClientClick = (e: any): void => {
-    const type: string | undefined = e.target.dataset.type
-    if (type !== undefined) {
-      router.push({ name: 'Client', params: { clientName: type } })
+    const dataset = e.target.dataset
+    if (dataset.type !== undefined) {
+      router.push({ name: 'Client', params: { clientName: dataset.type } })
     }
     e.preventDefault()
   }

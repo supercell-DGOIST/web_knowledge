@@ -1,5 +1,3 @@
-import { createPinia } from 'pinia'
+import useAbortControllersStore from './abort-http'
 
-const pinia = createPinia()
-
-export default pinia
+export { useAbortControllersStore }

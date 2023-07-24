@@ -16,7 +16,7 @@
   .directory {
     position: sticky;
     width: 224px;
-    top: var(--header-height);
+    top: calc(var(--header-height) + 20px);
     bottom: 0;
 
     .directory-content {

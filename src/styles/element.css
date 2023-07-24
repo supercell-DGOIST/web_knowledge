@@ -30,6 +30,10 @@ html.dark {
   --vt-c-text-3: var(--vt-c-text-dark-3);
 }
 
+.light .el-link:hover {
+  color: var(--el-border-color-hover);
+}
+
 .dark .el-card.is-hover-shadow:focus,
 .dark .el-card.is-hover-shadow:hover {
   border-color: var(--el-border-color-hover);

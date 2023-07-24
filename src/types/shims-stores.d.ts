@@ -3,7 +3,6 @@ interface controllerItem {
   signal: AbortSignal
 }
 
-interface states {
+interface abortHttpStates {
   controllers: controllerItem[]
 }
-

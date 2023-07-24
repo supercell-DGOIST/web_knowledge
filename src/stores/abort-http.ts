@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-const store = defineStore('abortControllers', {
-  state: (): states => ({
+const useAbortControllersStore = defineStore('abortControllers', {
+  state: (): abortHttpStates => ({
     controllers: []
   }),
   getters: {
@@ -25,4 +25,4 @@ const store = defineStore('abortControllers', {
   }
 })
 
-export default store
+export default useAbortControllersStore
