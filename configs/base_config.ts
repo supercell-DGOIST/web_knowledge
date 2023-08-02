@@ -14,7 +14,8 @@ export default (mode: string): UserConfig => {
     resolve: {
       alias: {
         '~': toPath('.'),
-        '@': toPath('src')
+        '@': toPath('src'),
+        assets: toPath('src/assets')
       }
     },
     json: {
@@ -23,7 +24,6 @@ export default (mode: string): UserConfig => {
     plugins: [
       vue(),
       AutoImport({
-        imports: ['vue', '@vueuse/core'],
         resolvers: [
           ElementPlusResolver(),
           // 自动导入图标组件

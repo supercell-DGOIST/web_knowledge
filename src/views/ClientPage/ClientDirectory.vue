@@ -4,13 +4,38 @@
       <div class="outline-marker"></div>
       <div class="outline-title">本页目录</div>
       <nav>
-        <el-link>createApp()</el-link>
+        <ul>
+          <li v-for="directory in directoryData" :key="directory.contentKey">
+            <el-link class="outline-link">
+              {{ directory.name }}
+            </el-link>
+          </li>
+        </ul>
       </nav>
     </div>
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { ref, watchEffect, onUnmounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { isDefined } from '@vueuse/core'
+  import { directoryMap } from '@/metas'
+
+  const route = useRoute()
+  const directoryData: any = ref([])
+
+  const stopWatch = watchEffect(() => {
+    const clientName: any = route.params.clientName
+    if (isDefined(clientName)) {
+      directoryData.value = directoryMap[clientName]
+    }
+  })
+
+  onUnmounted(() => {
+    stopWatch()
+  })
+</script>
 
 <style scoped lang="less">
   .directory {
@@ -47,5 +72,17 @@
     margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
+  }
+
+  .outline-link {
+    line-height: 28px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .outline-link:hover:after {
+    border: none;
   }
 </style>

@@ -34,10 +34,11 @@
 
 <script setup lang="ts">
   import PageDrawer from './PageDrawer.vue'
+  import { ref, computed, watchEffect, onUnmounted } from 'vue'
   import { Moon, Sunny, CaretBottom } from '@element-plus/icons-vue'
   import { useDark, useToggle, useColorMode } from '@vueuse/core'
   import { useRoute } from 'vue-router'
-  import { clients } from '@/metas'
+  import { findClient } from '@/utils/common'
 
   const title = import.meta.env.VITE_APP_TITLE
   const route = useRoute()
@@ -52,9 +53,9 @@
 
   const isClient = computed(() => route.name === 'Client')
 
-  watchEffect(() => {
+  const stopWatch = watchEffect(() => {
     if (route.name === 'Client') {
-      client.value = clients.find((item: clientItem) => item.key === route.params.clientName)
+      client.value = findClient(route.params.clientName)
     }
   })
 
@@ -66,6 +67,10 @@
     mode.value = isDark === true ? 'dark' : 'light'
     toggleDark(isDark)
   }
+
+  onUnmounted(() => {
+    stopWatch()
+  })
 </script>
 
 <style scoped lang="less">
@@ -108,7 +113,7 @@
     }
 
     .logo {
-      background: url('@/assets/knowledge.svg') center/100% 100%;
+      background: url('assets/knowledge.svg') center/100% 100%;
       display: inline-block;
       width: 24px;
       height: 24px;

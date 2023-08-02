@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
   import { Search } from '@element-plus/icons-vue'
+  import { ref, reactive } from 'vue'
   import { useDebounceFn } from '@vueuse/core'
   import { useRouter } from 'vue-router'
   import { clients } from '@/metas'

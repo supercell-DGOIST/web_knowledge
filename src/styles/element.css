@@ -56,33 +56,33 @@ html.dark {
 }
 
 .browser-icon {
-  background: url('@/assets/browser.svg') center/100% 100%;
+  background: url('assets/client_icon/browser.svg') center/100% 100%;
 }
 
 .html-icon {
-  background: url('@/assets/html.svg') center/100% 100%;
+  background: url('assets/client_icon/html.svg') center/100% 100%;
 }
 
 .css-icon {
-  background: url('@/assets/css.svg') center/100% 100%;
+  background: url('assets/client_icon/css.svg') center/100% 100%;
 }
 
 .javascript-icon {
-  background: url('@/assets/javascript.svg') center/100% 100%;
+  background: url('assets/client_icon/javascript.svg') center/100% 100%;
 }
 
 .typescript-icon {
-  background: url('@/assets/typescript.svg') center/100% 100%;
+  background: url('assets/client_icon/typescript.svg') center/100% 100%;
 }
 
 .nodejs-icon {
-  background: url('@/assets/nodejs.svg') center/100% 100%;
+  background: url('assets/client_icon/nodejs.svg') center/100% 100%;
 }
 
 .vue-icon {
-  background: url('@/assets/vue.svg') center/100% 100%;
+  background: url('assets/client_icon/vue.svg') center/100% 100%;
 }
 
 .react-icon {
-  background: url('@/assets/react.svg') center/100% 100%;
+  background: url('assets/client_icon/react.svg') center/100% 100%;
 }

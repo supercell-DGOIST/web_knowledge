@@ -1,48 +1,65 @@
 <template>
   <h1 class="title">
-    应用实例 API
-    <a
-      class="header-anchor"
-      href="#application-api"
-      aria-label='Permalink to "应用实例 API {#application-api}"'
-      >&ZeroWidthSpace;</a
-    >
+    {{ title }}
   </h1>
-  <h2 id="createapp" tabindex="-1">
-    createApp()
-    <a class="header-anchor" href="#createapp" aria-label='Permalink to "createApp() {#createapp}"'
-      >&ZeroWidthSpace;</a
-    >
-  </h2>
-  <p>创建一个应用实例。</p>
-  <ul>
-    <li>
-      <p><strong>类型</strong></p>
-      <div class="language-ts">
-        <button title="Copy Code" class="copy"></button><span class="lang">ts</span>
-        <pre
-          class="shiki material-theme-palenight"
-        ><code><span class="line"><span style="color:#C792EA;">function</span><span style="color:#A6ACCD;"> </span><span style="color:#82AAFF;">createApp</span><span style="color:#89DDFF;">(</span><span style="color:#A6ACCD;font-style:italic;">rootComponent</span><span style="color:#89DDFF;">:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">Component</span><span style="color:#89DDFF;">,</span><span style="color:#A6ACCD;"> </span><span style="color:#A6ACCD;font-style:italic;">rootProps</span><span style="color:#89DDFF;">?:</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">object</span><span style="color:#89DDFF;">):</span><span style="color:#A6ACCD;"> </span><span style="color:#FFCB6B;">App</span></span></code></pre>
-      </div>
-    </li>
-    <li>
-      <p><strong>详细信息</strong></p>
-      <p>第一个参数是根组件。第二个参数可选，它是要传递给根组件的 props。</p>
-    </li>
-    <li>
-      <p><strong>示例</strong></p>
-      <p>可以直接内联根组件：</p>
-    </li>
-    <li>
-      <p>
-        <strong>参考</strong
-        ><a href="/guide/essentials/application.html">指南 - 创建一个 Vue 应用实例</a>
-      </p>
-    </li>
-  </ul>
+  <section v-for="item in contentData" :key="item.key">
+    <h2>
+      {{ item.title }}
+      <a class="header-anchor" href="javascript:;"> &ZeroWidthSpace; </a>
+    </h2>
+    <p>{{ item.description }}</p>
+    <p v-if="item.img">
+      <image-box :data-src="item.img.url" :width="item.img.width" :height="item.img.height" />
+    </p>
+    <ul>
+      <li v-for="child_item in item.contents" :key="child_item.label">
+        <p>
+          <strong>{{ child_item.label }}</strong>
+        </p>
+        <p v-if="child_item.text">{{ child_item.text }}</p>
+        <p
+          v-for="_child_item in child_item.contents"
+          :class="_child_item.link ? 'm-0' : ''"
+          :key="_child_item.text"
+        >
+          <strong v-if="_child_item.label">{{ _child_item.label }}</strong>
+          <a v-if="_child_item.link" :href="_child_item.link">
+            {{ _child_item.text }}
+          </a>
+          <span v-if="!_child_item.link">
+            {{ _child_item.text }}
+          </span>
+        </p>
+      </li>
+    </ul>
+  </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { ImageBox } from '@/components'
+  import { ref, watchEffect, onUnmounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { isDefined } from '@vueuse/core'
+  import { findClient } from '@/utils/common'
+  import { contentMap } from '@/metas'
+
+  const route = useRoute()
+  const title = ref('')
+  const contentData: any = ref([])
+
+  const stopWatch = watchEffect(() => {
+    const clientName: any = route.params.clientName
+    if (isDefined(clientName)) {
+      const { name } = findClient(clientName)
+      title.value = name
+      contentData.value = contentMap[clientName]
+    }
+  })
+
+  onUnmounted(() => {
+    stopWatch()
+  })
+</script>
 
 <style scoped lang="less">
   h1,
@@ -63,22 +80,25 @@
     line-height: 1.4;
     letter-spacing: -0.02em;
   }
+
+  h2 {
+    margin: 4rem 0 1.8rem;
+    border-top: 1px solid var(--el-border-color);
+    padding-top: 1.8rem;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+
   .header-anchor {
     float: left;
     margin-left: -0.87em;
     padding-right: 0.23em;
     font-weight: 500;
-    opacity: 0;
-    transition:
-      color 0.25s,
-      opacity 0.25s;
+    color: var(--el-color-primary);
   }
-  h2 {
-    margin: 4rem 0 1.8rem;
-    border-top: 1px solid var(--vt-c-divider-light);
-    padding-top: 1.8rem;
-    font-size: 24px;
-    letter-spacing: -0.02em;
+
+  .header-anchor:before {
+    content: '#';
   }
 
   p,
@@ -88,11 +108,28 @@
     margin-bottom: 1.2em;
   }
 
+  p.m-0 {
+    margin: 0;
+  }
+
   ul {
     padding-left: 1.25rem;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.7;
 
     li {
       position: relative;
+
+      a {
+        color: var(--el-border-color-hover);
+        transition: color 0.25s;
+        text-decoration-style: dotted;
+      }
+
+      a:hover {
+        color: var(--link-hover-color);
+      }
     }
   }
 

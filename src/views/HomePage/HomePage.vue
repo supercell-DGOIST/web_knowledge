@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
   import HomeSearch from './HomeSearch.vue'
+  import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
   import { useDebounceFn } from '@vueuse/core'
   import { clients } from '@/metas'

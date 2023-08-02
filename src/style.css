@@ -26,6 +26,8 @@
   --vt-c-text-dark-3: rgba(235, 235, 235, 0.38);
 
   --vp-aside-width: var(--vp-sidebar-width-small);
+
+  --link-hover-color: #33a06f;
 }
 
 *,
@@ -62,6 +64,10 @@ body {
   line-height: 24px;
   color: var(--el-text-color-primary);
   background-color: var(--el-bg-color);
+}
+
+img {
+  display: inline-block;
 }
 
 #app {
