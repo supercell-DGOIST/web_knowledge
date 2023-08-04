@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+    <CONFIG_TYPE>CUSTOM</CONFIG_TYPE>
+    <DISP_MODE>FULL SCREEN</DISP_MODE>
+    <REN_REZ>LOW</REN_REZ>
+    <SCR_REZ>1280x720</SCR_REZ>
+    <FPS>30</FPS>
+    <SHADOW_QUAL>LOW</SHADOW_QUAL>
+    <AO>OFF</AO>
+    <RT_REF>OFF</RT_REF>
+    <MOT_BLUR>OFF</MOT_BLUR>
+</settings>
