@@ -4,6 +4,7 @@ import './styles/element.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import router from './router'
+import plugin from './plugin'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -12,4 +13,5 @@ const pinia = createPinia()
 
 app.use(router)
 app.use(pinia)
+app.use(plugin)
 app.mount('#app')

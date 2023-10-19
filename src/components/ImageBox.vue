@@ -1,20 +1,13 @@
 <template>
   <div class="overflow-hidden">
-    <div class="image-box text-center" :style="{ height: `${height}px` }">
-      <img
-        :src="getImageUrl('assets/picture.svg')"
-        :data-src="dataSrc"
-        :width="width"
-        :height="height"
-        v-lazy
-      />
+    <div class="image-box image-box-animation text-center">
+      <img src="/picture.svg" class="empty" :data-src="dataSrc" v-lazy />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
   import { lazyLoad } from '@/directives'
-  import { getImageUrl } from '@/utils/common'
 
   defineProps({
     width: Number,
@@ -38,23 +31,20 @@
 
   .image-box {
     position: relative;
-    height: 199px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     vertical-align: top;
+    min-height: 330px;
+    width: 100%;
 
-    img {
-      width: 48px;
-      height: 48px;
-      line-height: 48px;
-      max-width: 192px;
-      max-height: 192px;
+    .empty {
+      max-width: 49px;
     }
   }
 
-  .image-box::after {
+  .image-box-animation::after {
     position: absolute;
     top: 0;
     right: -150%;

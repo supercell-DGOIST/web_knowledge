@@ -6,18 +6,23 @@
     <div class="client-types" @click="onClientTypeClick">
       <el-space :size="18">
         <el-link>
-          <span data-type="all">API clients({{ clients.length }})</span>
+          <span data-type="all">All clients({{ clients.length }})</span>
         </el-link>
         <el-link v-for="item in clientOptions.clientTypes" :key="item.type">
           <span :data-type="item.type">{{ item.type }}({{ item.count }})</span>
         </el-link>
       </el-space>
     </div>
-    <div class="mt-5" @click="onClientClick">
+    <div class="mt-5">
       <el-row :gutter="20" v-for="(clients, index) in clientOptions.clientList" :key="index + ''">
         <el-col class="mb-5" :span="8" v-for="item in clients" :key="item.key">
-          <el-card class="cursor-pointer" :body-style="{ padding: 0 }" shadow="hover">
-            <div class="card-body" :data-type="item.key">
+          <el-card
+            class="cursor-pointer"
+            :body-style="{ padding: 0 }"
+            shadow="hover"
+            @click="onClientClick(item.key)"
+          >
+            <div class="card-body">
               <span :class="item.icon"></span>
               <h3 class="font-bold">{{ item.name }}</h3>
             </div>
@@ -68,12 +73,8 @@
     e.preventDefault()
   }
 
-  const onClientClick = (e: any): void => {
-    const dataset = e.target.dataset
-    if (dataset.type !== undefined) {
-      router.push({ name: 'Client', params: { clientName: dataset.type } })
-    }
-    e.preventDefault()
+  const onClientClick = (key: string): void => {
+    router.push({ name: 'Client', params: { clientName: key } })
   }
 </script>
 

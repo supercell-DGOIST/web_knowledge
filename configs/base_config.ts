@@ -18,6 +18,7 @@ export default (mode: string): UserConfig => {
         assets: toPath('src/assets')
       }
     },
+    publicDir: toPath('src/assets'),
     json: {
       stringify: true
     },

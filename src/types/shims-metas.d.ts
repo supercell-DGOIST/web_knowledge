@@ -2,8 +2,8 @@ interface clientItem {
   name: string
   type: string
   key: string
-  icon: string
-  link: string
+  icon?: string
+  link?: string
 }
 
 type clientItems = clientItem[]
@@ -18,6 +18,7 @@ type directoryMap = Record<string, directory[]>
 
 interface contentItemContents {
   text?: string
+  contents: contentItem[]
 }
 
 interface contentItem {
@@ -33,3 +34,5 @@ interface contents {
 }
 
 type contentMap = Record<string, contents[]>
+
+type method = (...args: any[]) => void

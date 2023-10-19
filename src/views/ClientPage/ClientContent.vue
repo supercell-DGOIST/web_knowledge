@@ -8,8 +8,8 @@
       <a class="header-anchor" href="javascript:;"> &ZeroWidthSpace; </a>
     </h2>
     <p>{{ item.description }}</p>
-    <p v-if="item.img">
-      <image-box :data-src="item.img.url" :width="item.img.width" :height="item.img.height" />
+    <p v-if="item.imgUrl">
+      <image-box :data-src="item.imgUrl" />
     </p>
     <ul>
       <li v-for="child_item in item.contents" :key="child_item.label">
@@ -17,19 +17,11 @@
           <strong>{{ child_item.label }}</strong>
         </p>
         <p v-if="child_item.text">{{ child_item.text }}</p>
-        <p
-          v-for="_child_item in child_item.contents"
-          :class="_child_item.link ? 'm-0' : ''"
-          :key="_child_item.text"
-        >
-          <strong v-if="_child_item.label">{{ _child_item.label }}</strong>
-          <a v-if="_child_item.link" :href="_child_item.link">
-            {{ _child_item.text }}
-          </a>
-          <span v-if="!_child_item.link">
-            {{ _child_item.text }}
-          </span>
-        </p>
+        <content-item :contents="child_item.contents">
+          <template #default="scope">
+            <content-item :contents="scope.item.contents" />
+          </template>
+        </content-item>
       </li>
     </ul>
   </section>
@@ -42,6 +34,7 @@
   import { isDefined } from '@vueuse/core'
   import { findClient } from '@/utils/common'
   import { contentMap } from '@/metas'
+  import { ContentItem } from './Components'
 
   const route = useRoute()
   const title = ref('')

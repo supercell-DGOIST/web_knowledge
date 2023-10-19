@@ -1,6 +1,6 @@
 module.exports = {
   types: [
-    { value: 'feat', name: 'feat:     新增功能' },
+    { value: 'feature', name: 'feat:     新增功能' },
     { value: 'fix', name: 'fix:      修复 bug' },
     { value: 'docs', name: 'docs:     文档变更' },
     {
@@ -51,7 +51,7 @@ module.exports = {
   /*
     scopeOverrides: {
       fix: [
-  
+
         {name: 'merge'},
         {name: 'style'},
         {name: 'e2eTest'},
